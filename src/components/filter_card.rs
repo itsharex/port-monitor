@@ -53,10 +53,11 @@ pub fn FilterCard(
                         </label>
                         <Input
                             value=offset
-                            on_input=set_offset
-                            input_type="number".to_string()
+                            on_input=Callback::new(move |v: String| {
+                                let filtered: String = v.chars().filter(|c| c.is_ascii_digit()).collect();
+                                set_offset.run(filtered);
+                            })
                             placeholder="0"
-                            min="0".to_string()
                             disabled=disabled_when_off
                         />
                     </div>
@@ -66,10 +67,11 @@ pub fn FilterCard(
                         </label>
                         <Input
                             value=length
-                            on_input=set_length
-                            input_type="number".to_string()
+                            on_input=Callback::new(move |v: String| {
+                                let filtered: String = v.chars().filter(|c| c.is_ascii_digit()).collect();
+                                set_length.run(filtered);
+                            })
                             placeholder="All"
-                            min="1".to_string()
                             disabled=disabled_when_off
                         />
                     </div>
