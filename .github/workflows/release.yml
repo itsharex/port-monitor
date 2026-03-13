@@ -28,6 +28,9 @@ jobs:
 
     runs-on: ${{ matrix.platform }}
 
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
     steps:
       - uses: actions/checkout@v4
 
@@ -62,7 +65,15 @@ jobs:
         with:
           tagName: ${{ github.ref_name }}
           releaseName: "Port Monitor ${{ github.ref_name }}"
-          releaseBody: "See the assets to download this version and install."
+          releaseBody: |
+            See the assets to download this version and install.
+
+            ### macOS Users
+            If you see **"App is damaged and can't be opened"**, run this command in Terminal:
+            ```
+            xattr -cr /Applications/Port\ Monitor.app
+            ```
+            Then open the app again. This happens because the app is not signed with an Apple Developer certificate.
           releaseDraft: true
           prerelease: false
           args: ${{ matrix.args }}
