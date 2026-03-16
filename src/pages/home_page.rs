@@ -191,7 +191,7 @@ pub fn HomePage() -> impl IntoView {
 
     view! {
         <div class="h-screen p-2 overflow-hidden">
-            <div class="grid grid-cols-1 md:grid-cols-[1fr_3fr] gap-2 h-full">
+            <div class="grid grid-cols-[1fr_3fr] gap-2 h-full">
                 // Left column: Connection + Filter
                 <div class="space-y-2 overflow-y-auto">
                     <ConnectionCard
